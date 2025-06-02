@@ -1,0 +1,47 @@
+---
+import Page from "../layouts/Page.astro";
+---
+
+<Page
+  title="Curriculum"
+  description="Lorem ipsum dolor sit amet"
+>
+  <main class="pdf-container">
+    <p>Here's a preview of the document:</p>
+    <iframe src="/curriculum.pdf" title="My PDF Document" frameborder="0"
+    ></iframe>
+    <a class="download-link" href="/curriculum.pdf" download="curriculum.pdf">
+      Download PDF
+    </a>
+  </main>
+
+  <style>
+    .pdf-container {
+      text-align: center;
+      background-color: linear-gradient(var(--gray-gradient)) no-repeat;
+      padding: 20px;
+      border-radius: 8px;
+      max-width: 900px; /* Limit the maximum width of the container */
+      width: 100%; /* Make it responsive */
+    }
+    iframe {
+      width: 100%; /* Make the iframe fill its container */
+      height: 600px; /* Adjust height as needed */
+      border-radius: 4px;
+    }
+    .download-link {
+      margin-top: 20px;
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #000000;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+    .download-link:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</Page>
