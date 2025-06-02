@@ -5,16 +5,26 @@
   "author": "Carlo Morganti",
   "license": "MIT",
   "homepage": "https://morgantiz.github.io/",
-  "main": "index.js",
+  "main": "page.md",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "astro": "astro"
   },
   "devDependencies": {
-    "gh-pages": "^6.3.0"
+    "gh-pages": "^6.3.0",
+    "prettier": "3.5.3",
+    "prettier-plugin-astro": "0.14.1"
   },
   "dependencies": {
-    "astro": "^5.8.1"
+    "@astrojs/check": "^0.9.4",
+    "@astrojs/mdx": "^4.3.0",
+    "@astrojs/rss": "^4.0.11",
+    "@astrojs/sitemap": "^3.4.0",
+    "@sentry/astro": "^9.24.0",
+    "@spotlightjs/astro": "^3.2.3",
+    "astro": "^5.8.1",
+    "typescript": "^5.8.3"
   }
 }
