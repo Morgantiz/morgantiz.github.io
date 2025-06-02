@@ -1,0 +1,14 @@
+services:
+  morgantiz.github.io:
+    image: morgantiz.github.io
+    container_name: morgantiz.github.io
+    build:
+      context: .. # defines Dockerfile files accessibility
+      dockerfile: docker/Dockerfile
+    tty: true
+    environment:
+      - DISPLAY=${DISPLAY}
+    network_mode: host
+    privileged: true
+    volumes:
+      - ../:/morgantiz.github.io
