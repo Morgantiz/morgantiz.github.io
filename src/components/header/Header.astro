@@ -1,0 +1,107 @@
+---
+// Astro frontmatter
+import HeaderLink from "./HeaderLink.astro";
+import { SITE_TITLE } from "../../consts";
+import ThemeToggle from "./ThemeToggle.astro";
+---
+
+<header>
+  <nav>
+    <h2><a href="/">{SITE_TITLE}</a></h2>
+
+    <div class="internal-links">
+      <HeaderLink href="/">Home</HeaderLink>
+      <HeaderLink href="/projects">Projects</HeaderLink>
+      <HeaderLink href="/curriculum">Curriculum</HeaderLink>
+      <HeaderLink href="/about">About</HeaderLink>
+    </div>
+
+    <h2>
+      <ThemeToggle />
+    </h2>
+  </nav>
+</header>
+
+<style>
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    color: var(--accent);
+  }
+
+  h2 {
+    margin: 0;
+    font-size: 1rem;
+    color: var(--accent);
+  }
+
+  nav a {
+    padding: 0.5em 1em;
+    text-decoration: none;
+    color: var(--black);
+    border-bottom: 2px solid transparent;
+  }
+
+  nav a.active {
+    border-bottom-color: var(--accent-hover);
+    color: var(--accent-hover);
+  }
+
+  .internal-links {
+    position: fixed;
+    top: 0.75rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1001;
+
+    display: flex;
+    gap: 1rem;
+    padding: 0.5rem 1.5rem;
+
+    background: var(--surface-transparent);
+    backdrop-filter: blur(10px);
+    border-radius: 2rem;
+    box-shadow: 0 2px 8px rgba(var(--black), 0.05);
+
+    transition:
+      transform 0.3s ease,
+      opacity 0.3s ease;
+  }
+
+  .internal-links.hide-links {
+    transform: translate(-50%, -150%);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  @media (max-width: 640px) {
+    .internal-links {
+      position: static;
+      transform: none;
+      background: none;
+      backdrop-filter: none;
+      box-shadow: none;
+      border-radius: 0;
+    }
+  }
+</style>
+
+<!-- Inline script for scroll behavior -->
+<script is:inline>
+  let lastScrollY = window.scrollY;
+  const internalLinks = document.querySelector(".internal-links");
+
+  window.addEventListener("scroll", () => {
+    const currentScrollY = window.scrollY;
+
+    if (currentScrollY > lastScrollY) {
+      internalLinks.classList.add("hide-links");
+    } else {
+      internalLinks.classList.remove("hide-links");
+    }
+
+    lastScrollY = currentScrollY;
+  });
+</script>

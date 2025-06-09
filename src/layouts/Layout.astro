@@ -1,0 +1,48 @@
+---
+import BaseHead from "../components/header/BaseHead.astro";
+import Header from "../components/header/Header.astro";
+import Footer from "../components/Footer.astro";
+
+import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+---
+
+<html>
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <body>
+    <div class="layout">
+      <Header />
+      <main>
+        <slot />
+      </main>
+      <Footer />
+    </div>
+  </body>
+</html>
+
+<style>
+  body,
+  html {
+    background: linear-gradient(
+      to bottom,
+      var(--bg-primary),
+      var(--bg-secondary)
+    );
+    font-family: "Atkinson", sans-serif;
+    text-align: left;
+    font-size: 20px;
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  main {
+    padding: 2rem;
+    color: var(--text-primary);
+  }
+</style>

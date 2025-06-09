@@ -1,0 +1,136 @@
+---
+interface Props {
+  words: string[];
+  speed?: number;
+}
+
+const { words, speed = 100 } = Astro.props;
+---
+
+<span
+  id="typewriter-text"
+  data-words={JSON.stringify(words)}
+  data-speed={speed}
+>
+  <span class="cursor">|</span>
+</span>
+
+<script>
+  class TypewriterEffect {
+    constructor(element) {
+      this.element = element;
+      this.words = JSON.parse(element.dataset.words);
+      this.speed = parseInt(element.dataset.speed) || 100;
+      this.currentWordIndex = 0;
+      this.currentCharIndex = 0;
+      this.isDeleting = false;
+      this.isWaiting = false;
+
+      this.init();
+    }
+
+    init() {
+      this.type();
+    }
+
+    type() {
+      const currentWord = this.words[this.currentWordIndex];
+
+      if (this.isWaiting) {
+        setTimeout(() => {
+          this.isWaiting = false;
+          this.type();
+        }, 1500);
+        return;
+      }
+
+      if (!this.isDeleting && this.currentCharIndex <= currentWord.length) {
+        this.element.innerHTML =
+          currentWord.substring(0, this.currentCharIndex) +
+          '<span class="cursor">|</span>';
+        this.currentCharIndex++;
+
+        if (this.currentCharIndex > currentWord.length) {
+          this.isWaiting = true;
+          this.isDeleting = true;
+        }
+
+        setTimeout(() => this.type(), this.speed);
+      } else if (this.isDeleting && this.currentCharIndex >= 0) {
+        this.element.innerHTML =
+          currentWord.substring(0, this.currentCharIndex) +
+          '<span class="cursor">|</span>';
+        this.currentCharIndex--;
+
+        if (this.currentCharIndex < 0) {
+          this.isDeleting = false;
+          this.currentWordIndex =
+            (this.currentWordIndex + 1) % this.words.length;
+          this.currentCharIndex = 0;
+        }
+
+        setTimeout(() => this.type(), this.speed / 2);
+      }
+    }
+  }
+
+  // Initialize typewriter effect when component loads
+  document.addEventListener("DOMContentLoaded", () => {
+    const typewriterElement = document.getElementById("typewriter-text");
+    if (typewriterElement) {
+      new TypewriterEffect(typewriterElement);
+    }
+  });
+
+  // Re-initialize if navigating with Astro's client-side routing
+  document.addEventListener("astro:page-load", () => {
+    const typewriterElement = document.getElementById("typewriter-text");
+    if (typewriterElement) {
+      new TypewriterEffect(typewriterElement);
+    }
+  });
+</script>
+
+<style>
+  #typewriter-text {
+    font-size: 3rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    min-height: 4rem;
+    display: inline-block;
+  }
+
+  .cursor {
+    color: #667eea;
+    animation: blink 1s infinite;
+    -webkit-text-fill-color: #667eea;
+  }
+
+  @keyframes blink {
+    0%,
+    50% {
+      opacity: 1;
+    }
+    51%,
+    100% {
+      opacity: 0;
+    }
+  }
+
+  @media (max-width: 768px) {
+    #typewriter-text {
+      font-size: 2rem;
+      min-height: 3rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    #typewriter-text {
+      font-size: 1.5rem;
+      min-height: 2.5rem;
+    }
+  }
+</style>

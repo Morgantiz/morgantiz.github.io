@@ -2,10 +2,8 @@
 import Page from "../layouts/Page.astro";
 ---
 
-<Page
-  title="Curriculum"
-  description="Lorem ipsum dolor sit amet"
->
+<!doctype html>
+<Page title="Curriculum" description="Lorem ipsum dolor sit amet">
   <main class="pdf-container">
     <p>Here's a preview of the document:</p>
     <iframe src="/curriculum.pdf" title="My PDF Document" frameborder="0"
@@ -26,14 +24,14 @@ import Page from "../layouts/Page.astro";
     }
     iframe {
       width: 100%; /* Make the iframe fill its container */
-      height: 600px; /* Adjust height as needed */
-      border-radius: 4px;
+      height: 800px; /* Adjust height as needed */
+      border-radius: 10px;
     }
     .download-link {
       margin-top: 20px;
       display: inline-block;
       padding: 10px 20px;
-      background-color: #000000;
+      background-color: #505050;
       color: white;
       text-decoration: none;
       border-radius: 5px;
@@ -41,7 +39,7 @@ import Page from "../layouts/Page.astro";
       transition: background-color 0.3s ease;
     }
     .download-link:hover {
-      background-color: #0056b3;
+      background-color: #000000;
     }
   </style>
 </Page>
