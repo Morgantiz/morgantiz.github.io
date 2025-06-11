@@ -1,0 +1,50 @@
+/* General Colors */
+:root {
+  --palette1: #355070;
+  --palette2: #6d597a;
+  --palette3: #b56576;
+  --palette4: #e56b6f;
+  --palette5: #eaac8b;
+  /* standard names */
+  --dark: var(--palette1);
+  --dark-secondary: var(--palette2);
+  --light: var(--palette5);
+  --light-secondary: var(--palette4);
+  --middle: var(--palette3);
+  --primary-shade: color-mix(in srgb, var(--bg-primary) 70%, black);
+  --primary-tint: color-mix(in srgb, var(--bg-primary) 70%, white);
+  --surface-transparent: rgba(var(--accent-color, 0.4));
+}
+
+/* Themes */
+:root[data-theme="dark"] {
+  --bg-primary: var(--dark);
+  --bg-secondary: var(--primary-shade);
+  --text-primary: white;
+  --accent: var(--light);
+  --accent-hover: var(--light-secondary);
+}
+:root[data-theme="light"] {
+  --bg-primary: var(--light);
+  --bg-secondary: var(--primary-tint);
+  --text-primary: black;
+  --accent: var(--dark);
+  --accent-hover: var(--dark-secondary);
+}
+@media (prefers-color-scheme: dark) {
+}
+
+@font-face {
+  font-family: "Atkinson";
+  src: url("/fonts/atkinson-regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Atkinson";
+  src: url("/fonts/atkinson-bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}

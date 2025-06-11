@@ -1,0 +1,178 @@
+---
+export interface Props {
+  icons: string[];
+  speed?: number;
+  left_to_right?: string;
+  className?: string;
+}
+
+const {
+  icons,
+  speed = 30,
+  left_to_right = "true",
+  className = "",
+} = Astro.props;
+
+// Generate unique ID for this component instance
+const componentId = `scroll-${Math.random().toString(36).substr(2, 9)}`;
+---
+
+<div class={`infinite-scroll-container ${className}`} id={componentId}>
+  <div class={`scroll-content scroll`} data-speed={speed}>
+    {
+      icons.map((icon) => (
+        <div class="icon-item">
+          <span class="icon">{icon}</span>
+        </div>
+      ))
+    }
+    {/* Triple the content for ultra-smooth looping */}
+    {
+      icons.map((icon) => (
+        <div class="icon-item">
+          <span class="icon">{icon}</span>
+        </div>
+      ))
+    }
+    {
+      icons.map((icon) => (
+        <div class="icon-item">
+          <span class="icon">{icon}</span>
+        </div>
+      ))
+    }
+  </div>
+</div>
+
+<script define:vars={{ componentId, speed, left_to_right }}>
+  // Wait for DOM to be ready
+  document.addEventListener("DOMContentLoaded", function () {
+    const container = document.getElementById(componentId);
+    if (!container) return;
+
+    const row = container.querySelector(".scroll");
+
+    function setupAnimation(element, speed, left_to_right) {
+      if (!element) return;
+
+      // Get the width of one complete set of icons (1/3 of total width)
+      const totalWidth = element.scrollWidth;
+      const oneSetWidth = totalWidth / 3;
+
+      // Create the animation
+      const keyframes =
+        left_to_right === "true"
+          ? [
+              { transform: "translateX(0px)" },
+              { transform: `translateX(-${oneSetWidth}px)` },
+            ]
+          : [
+              { transform: `translateX(-${oneSetWidth}px)` },
+              { transform: "translateX(0px)" },
+            ];
+
+      // Apply the animation
+      element.animate(keyframes, {
+        duration: speed * 1000, // Convert to milliseconds
+        iterations: Infinity,
+        easing: "linear",
+      });
+    }
+
+    // Setup animations after a small delay to ensure elements are rendered
+    setTimeout(() => {
+      setupAnimation(row, speed, left_to_right);
+    }, 100);
+  });
+</script>
+
+<style>
+  .infinite-scroll-container {
+    width: 100%;
+    display: flex;
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 2rem;
+    box-sizing: border-box;
+  }
+
+  .scroll-row {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .scroll-content {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    will-change: transform;
+  }
+
+  .icon-item {
+    flex-shrink: 0;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-secondary);
+    border-radius: 16px;
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--bg-secondary);
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+    cursor: pointer;
+  }
+
+  .icon-item:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 10px 25px var(--bg-secondary);
+    background: var(--bg-secondary);
+  }
+
+  .icon {
+    font-size: 2rem;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+  }
+
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .icon-item {
+      width: 60px;
+      height: 60px;
+    }
+
+    .icon {
+      font-size: 1.5rem;
+    }
+
+    .scroll-content {
+      gap: 1rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .icon-item {
+      width: 50px;
+      height: 50px;
+    }
+
+    .icon {
+      font-size: 1.2rem;
+    }
+
+    .scroll-content {
+      gap: 0.5rem;
+    }
+  }
+
+  /* Add subtle gradient overlays on edges */
+  .infinite-scroll-container::before,
+  .infinite-scroll-container::after {
+    width: 100px;
+  }
+</style>

@@ -3,9 +3,41 @@ import Layout from "../layouts/Layout.astro";
 
 import { HOME_WORDS } from "../consts";
 import TypewriterText from "../components/utils/TypeWriterText.astro";
+import ScrollingIcons from "../components/utils/ScrollingIcons.astro";
+
+const topIcons = ["🚀", "🌟", "🎯", "🛠️"];
+const bottomIcons = ["⚙️", "🔒", "🧠", "📦", "🔧"];
+
+// Define different sets of icons for demonstration
+const techIcons = ["⚡", "🚀", "💎", "🔥", "⭐", "🎯", "💫", "🌟", "✨", "🎨"];
+const musicIcons = ["🎪", "🎭", "🎬", "🎮", "🎸", "🎺", "🎻", "🎹", "🎤", "🎧"];
+const emojiIcons = ["😀", "😎", "🤩", "😍", "🥳", "😊", "😄", "🤗", "😋", "🤔"];
 ---
 
 <!doctype html>
 <Layout>
-  <TypewriterText words={HOME_WORDS} />
+  <div class="text">
+    <TypewriterText words={HOME_WORDS} />
+  </div>
+  <div class="scrolling-icons">
+    <ScrollingIcons
+      icons={musicIcons}
+      speed={40}
+      left_to_right="true"
+      className="music-scroll"
+    />
+  </div>
 </Layout>
+
+<style>
+  .text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .scrolling-icons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+</style>
