@@ -26,21 +26,6 @@ const componentId = `scroll-${Math.random().toString(36).substr(2, 9)}`;
         </div>
       ))
     }
-    {/* Triple the content for ultra-smooth looping */}
-    {
-      icons.map((icon) => (
-        <div class="icon-item">
-          <span class="icon">{icon}</span>
-        </div>
-      ))
-    }
-    {
-      icons.map((icon) => (
-        <div class="icon-item">
-          <span class="icon">{icon}</span>
-        </div>
-      ))
-    }
   </div>
 </div>
 
@@ -88,17 +73,6 @@ const componentId = `scroll-${Math.random().toString(36).substr(2, 9)}`;
 
 <style>
   .infinite-scroll-container {
-    display: flex;
-    overflow: hidden;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    padding: 2rem;
-    box-sizing: border-box;
-  }
-
-  .scroll-row {
-    position: relative;
   }
 
   .scroll-content {
@@ -109,7 +83,6 @@ const componentId = `scroll-${Math.random().toString(36).substr(2, 9)}`;
   }
 
   .icon-item {
-    flex-shrink: 0;
     width: 80px;
     height: 80px;
     display: flex;
