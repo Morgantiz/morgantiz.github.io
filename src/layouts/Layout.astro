@@ -12,13 +12,15 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
   </head>
-  <div class="layout">
-    <Header />
-    <div class="layout-core">
-      <slot />
+  <body>
+    <div class="layout">
+      <Header />
+      <div class="layout-core">
+        <slot />
+      </div>
+      <Footer />
     </div>
-    <Footer />
-  </div>
+  </body>
 </html>
 
 <style>
@@ -39,13 +41,11 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    min-width: 100vw;
   }
 
   .layout-core {
     max-width: 1700px;
-    min-height: 60vh;
-    margin: auto auto;
+    margin: auto;
     display: flex;
     flex-direction: column;
   }

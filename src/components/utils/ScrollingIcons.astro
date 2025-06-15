@@ -82,13 +82,12 @@ const componentId = `scroll-${Math.random().toString(36).substr(2, 9)}`;
     // Setup animations after a small delay to ensure elements are rendered
     setTimeout(() => {
       setupAnimation(row, speed, left_to_right);
-    }, 100);
+    }, 10);
   });
 </script>
 
 <style>
   .infinite-scroll-container {
-    width: 100%;
     display: flex;
     overflow: hidden;
     align-items: center;
@@ -99,8 +98,6 @@ const componentId = `scroll-${Math.random().toString(36).substr(2, 9)}`;
   }
 
   .scroll-row {
-    width: 100%;
-    overflow: hidden;
     position: relative;
   }
 
@@ -171,8 +168,4 @@ const componentId = `scroll-${Math.random().toString(36).substr(2, 9)}`;
   }
 
   /* Add subtle gradient overlays on edges */
-  .infinite-scroll-container::before,
-  .infinite-scroll-container::after {
-    width: 100px;
-  }
 </style>
