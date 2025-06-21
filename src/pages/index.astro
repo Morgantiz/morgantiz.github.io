@@ -5,13 +5,7 @@ import { HOME_WORDS } from "../consts";
 import TypewriterText from "../components/utils/TypeWriterText.astro";
 import ScrollingIcons from "../components/utils/ScrollingIcons.astro";
 
-const topIcons = ["🚀", "🌟", "🎯", "🛠️"];
-const bottomIcons = ["⚙️", "🔒", "🧠", "📦", "🔧"];
-
-// Define different sets of icons for demonstration
-const techIcons = ["⚡", "🚀", "💎", "🔥", "⭐", "🎯", "💫", "🌟", "✨", "🎨"];
 const musicIcons = ["🎪", "🎭", "🎬", "🎮", "🎸", "🎺", "🎻", "🎹", "🎤", "🎧"];
-const emojiIcons = ["😀", "😎", "🤩", "😍", "🥳", "😊", "😄", "🤗", "😋", "🤔"];
 ---
 
 <Layout>
@@ -19,12 +13,12 @@ const emojiIcons = ["😀", "😎", "🤩", "😍", "🥳", "😊", "😄", "�
     <TypewriterText words={HOME_WORDS} />
   </div>
   <div class="scrolling-icons">
-    <ScrollingIcons
+    <!-- <ScrollingIcons
       icons={musicIcons}
       speed={40}
       left_to_right="true"
       className="music-scroll"
-    />
+    /> -->
   </div>
 </Layout>
 

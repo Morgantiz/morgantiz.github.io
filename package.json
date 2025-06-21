@@ -27,7 +27,7 @@
     "@sentry/astro": "^9.24.0",
     "@spotlightjs/astro": "^3.2.3",
     "@tailwindcss/vite": "^4.1.10",
-    "astro": "^5.8.1",
+    "astro": "^5.1.9",
     "astro-icon": "^1.1.5",
     "lucide-react": "^0.515.0",
     "pdfjs-dist": "^5.3.31",
