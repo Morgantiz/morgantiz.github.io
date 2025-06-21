@@ -23,7 +23,6 @@ h3,
 h4,
 h5,
 h6 {
-  margin: 0 0 0.5rem 0;
   color: rgb(var(--bg-primary));
   line-height: 1.2;
 }
@@ -52,11 +51,11 @@ b {
   font-weight: 700;
 }
 p {
-  margin-bottom: 1em;
+  padding-bottom: 1em;
   color: var(--text-primary);
 }
 .prose p {
-  margin-bottom: 2em;
+  padding-bottom: 2em;
 }
 textarea {
   width: 100%;

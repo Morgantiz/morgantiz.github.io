@@ -1,8 +1,4 @@
 ---
-import BaseHead from "../../components/header/BaseHead.astro";
-import Header from "../../components/header/Header.astro";
-import Footer from "../../components/Footer.astro";
-import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
 import { getCollection } from "astro:content";
 import FormattedDate from "../../components/utils/FormattedDate.astro";
 import Page from "../../layouts/Page.astro";
@@ -34,6 +30,13 @@ const posts = (await getCollection("projects")).sort(
 </Page>
 
 <style>
+  h1 {
+    color: var(--accent-hover);
+    font-size: 20px;
+    font-weight: bolder;
+    text-decoration: none;
+  }
+
   ul {
     display: flex;
     flex-wrap: wrap;
