@@ -5,7 +5,7 @@ const { title } = Astro.props;
 ---
 
 <Layout>
-  <main class="page">
+  <main class="page-content">
     <div class="title">
       <h1>{title}</h1>
       <hr />
@@ -15,9 +15,7 @@ const { title } = Astro.props;
 </Layout>
 
 <style>
-  .page {
-    max-width: 50vw;
-    margin: auto;
-    padding: 3em 1em;
+  .page-content {
+    max-width: 1200px;
   }
 </style>
