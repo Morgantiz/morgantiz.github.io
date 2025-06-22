@@ -23,7 +23,7 @@ h3,
 h4,
 h5,
 h6 {
-  color: rgb(var(--bg-primary));
+  color: white;
   line-height: 1.2;
 }
 h1 {

@@ -1,17 +1,24 @@
 ---
 import Link from "../utils/Link.astro";
 import { SITE_TITLE } from "../../consts";
-import ThemeToggle from "./ThemeToggle.astro";
+import DropdownMenu from "./DropdownMenu.astro";
 
 const { class: className, ...props } = Astro.props;
+
+const pages = [
+  { name: "About", href: "/" },
+  { name: "Projects", href: "/projects" },
+  { name: "Curriculum", href: "/curriculum" },
+];
 ---
 
 <header class={className}>
   <Link href="/">{SITE_TITLE}</Link>
   <div class="internal-links-desktop">
-    <Link href="/">About</Link>
-    <Link href="/projects">Projects</Link>
-    <Link href="/curriculum">Curriculum</Link>
+    {pages.map((page) => <Link href={page.href}>{page.name}</Link>)}
+  </div>
+  <div class="internal-links-mobile">
+    <DropdownMenu pages={pages} />
   </div>
 </header>
 
@@ -41,9 +48,22 @@ const { class: className, ...props } = Astro.props;
     right: 1em;
   }
 
+  .internal-links-mobile {
+    display: none;
+    position: absolute;
+    right: 1em;
+  }
+
+  .internal-links-desktop a {
+    padding: 1em;
+  }
+
   @media (max-width: 500px) {
     .internal-links-desktop {
       display: none;
+    }
+    .internal-links-mobile {
+      display: block;
     }
   }
 

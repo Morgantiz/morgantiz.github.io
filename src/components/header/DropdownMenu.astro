@@ -1,0 +1,129 @@
+---
+import Link from "../utils/Link.astro";
+interface Page {
+  name: string;
+  href: string;
+}
+
+const { pages } = Astro.props;
+---
+
+<div class="dropdown-container" id="dropdown">
+  <div>
+    <button
+      type="button"
+      class="dropdown-button"
+      id="menu-button"
+      aria-expanded="true"
+      aria-haspopup="true"
+    >
+      <a>Menu</a>
+      <svg
+        class="dropdown-icon"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+        aria-hidden="true"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z"
+          clip-rule="evenodd"></path>
+      </svg>
+    </button>
+  </div>
+
+  <div class="dropdown-menu" id="dropdown-menu">
+    <div class="dropdown-items">
+      {pages.map((page) => <Link href={page.href}>{page.name}</Link>)}
+    </div>
+  </div>
+</div>
+
+<script type="module">
+  const button = document.getElementById("menu-button");
+  const menu = document.getElementById("dropdown-menu");
+
+  button?.addEventListener("click", () => {
+    menu?.classList.toggle("show");
+    button.setAttribute(
+      "aria-expanded",
+      menu?.classList.contains("show") ? "true" : "false",
+    );
+    button?.classList.toggle("show");
+  });
+
+  // Optional: close dropdown when clicking outside
+  document.addEventListener("click", (e) => {
+    if (!document.getElementById("dropdown")?.contains(e.target)) {
+      menu?.classList.remove("show");
+      button.setAttribute("aria-expanded", "false");
+    }
+  });
+</script>
+
+<style>
+  /* Icon  */
+  .dropdown-button {
+    display: inline-flex;
+    justify-content: center;
+    gap: 0.375rem;
+    border-radius: 0.375rem;
+    background-color: var(--bg-secondary);
+    padding: 0.5rem 0.75rem;
+    font-size: 1em;
+    color: var(--accent); /* text-gray-900 */
+    border: 0;
+    cursor: pointer;
+  }
+  .dropdown-button a {
+    color: var(--accent);
+    font-weight: bolder;
+  }
+  .dropdown-icon {
+    margin-right: -0.25rem;
+    width: 1.25rem;
+    height: 1.25rem;
+    color: var(--accent); /* text-gray-400 */
+  }
+
+  /* Menu  */
+  .dropdown-menu {
+    display: none;
+  }
+  .dropdown-menu {
+    position: absolute;
+    right: 0;
+    z-index: 10;
+    margin-top: 0.5rem;
+    width: 8rem;
+    border-radius: 0.375rem;
+    background-color: var(--bg-primary);
+    box-shadow:
+      0 10px 15px -3px rgba(0, 0, 0, 0.1),
+      0 4px 6px -4px rgba(0, 0, 0, 0.05);
+    border: 0px solid rgba(0, 0, 0, 0.05);
+    outline: none;
+  }
+
+  /* Animation */
+  .dropdown-button.show {
+    background-color: var(--bg-primary);
+  }
+  .dropdown-menu.show {
+    display: block;
+  }
+
+  /* Menu Content */
+  .dropdown-items a {
+    display: block;
+    padding: 0.5rem 1rem;
+    font-size: 1em;
+    color: var(--accent);
+    text-align: left;
+    text-decoration: none;
+  }
+
+  .dropdown-items a:hover {
+    color: var(--accent-hover);
+  }
+</style>
