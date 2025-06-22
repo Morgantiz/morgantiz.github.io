@@ -1,13 +1,47 @@
 ---
 import Page from "../layouts/Page.astro";
+import { getCollection } from "astro:content";
+import FormattedDate from "../components/utils/FormattedDate.astro";
+import { render } from "astro:content";
+
+// Orders jobs and renders the content
+const jobs = await Promise.all(
+  (await getCollection("jobs"))
+    .sort((a, b) => b.data.start.valueOf() - a.data.start.valueOf())
+    .map(async (post) => {
+      const rendered = await render(post);
+      return {
+        ...post,
+        Content: rendered.Content,
+      };
+    }),
+);
 ---
 
 <!doctype html>
 <Page title="Curriculum" description="Lorem ipsum dolor sit amet">
+  <section>
+    <ul>
+      {
+        jobs.map((job) => (
+          <li>
+            <article>
+              <h2>{job.data.title}</h2>
+              <p class="start-date">
+                <FormattedDate date={job.data.start} />
+              </p>
+              <job.Content />
+            </article>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
   <main class="pdf-container">
-    <p>Here's a preview of the document:</p>
-    <iframe src="/curriculum.pdf" title="My PDF Document" frameborder="0"
-    ></iframe>
+    <!-- <p>Here's a preview of the document:</p> -->
+    <!-- <iframe src="/curriculum.pdf" title="My PDF Document" frameborder="0"
+    ></iframe> -->
     <a class="download-link" href="/curriculum.pdf" download="curriculum.pdf">
       Download PDF
     </a>

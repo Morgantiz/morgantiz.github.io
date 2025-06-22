@@ -1,7 +1,7 @@
 ---
 title: "Roser"
 description: "Lorem ipsum dolor sit amet"
-pubDate: "Jun 1 2025"
+pubDate: "June 2025"
 heroImage: "/placeholder.jpg"
 ---
 

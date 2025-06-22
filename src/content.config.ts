@@ -15,4 +15,19 @@ const projects = defineCollection({
   }),
 });
 
-export const collections = { projects };
+const jobs = defineCollection({
+  // Load Markdown and MDX files in the `src/content/projects/` directory.
+  loader: glob({
+    base: "./src/content/jobs",
+    pattern: "**/*.{md,mdx}",
+  }),
+  // Type-check frontmatter using a schema
+  schema: z.object({
+    title: z.string(),
+    start: z.coerce.date(),
+    end: z.coerce.date().optional(),
+    logo: z.string().optional(),
+  }),
+});
+
+export const collections = { projects, jobs };
