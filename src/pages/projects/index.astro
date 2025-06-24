@@ -18,9 +18,9 @@ const posts = (await getCollection("projects")).sort(
             <a href={`/projects/${post.data.title}/`}>
               <img width={720} height={360} src={post.data.heroImage} alt="" />
               <h1 class="title">{post.data.title}</h1>
-              <p class="date">
+              <h5>
                 <FormattedDate date={post.data.pubDate} />
-              </p>
+              </h5>
             </a>
           </li>
         ))
@@ -30,8 +30,9 @@ const posts = (await getCollection("projects")).sort(
 </Page>
 
 <style>
-  h1 {
-    color: var(--accent-hover);
+  h1,
+  h5 {
+    color: var(--accent);
     font-size: 20px;
     font-weight: bolder;
     text-decoration: none;
@@ -43,7 +44,8 @@ const posts = (await getCollection("projects")).sort(
     gap: 2rem;
     list-style-type: none;
     margin: 0;
-    padding: 0;
+    padding: 1em;
+    justify-content: center;
   }
   ul li {
     width: calc(50% - 1rem);
@@ -53,7 +55,7 @@ const posts = (await getCollection("projects")).sort(
     transition: 0.2s ease;
   }
   ul li:first-child {
-    width: 100%;
+    width: 80%;
     margin-bottom: 1rem;
     text-align: center;
   }
@@ -61,7 +63,7 @@ const posts = (await getCollection("projects")).sort(
     width: 100%;
   }
   ul li:first-child .title {
-    font-size: 2.369rem;
+    font-size: 30px;
   }
   ul li img {
     margin-bottom: 0.5rem;
@@ -75,9 +77,6 @@ const posts = (await getCollection("projects")).sort(
     margin: 0;
     line-height: 1;
   }
-  .date {
-    margin: 0;
-  }
   ul li a:hover h4,
   ul a:hover img {
     box-shadow: var(--box-shadow);
@@ -87,7 +86,6 @@ const posts = (await getCollection("projects")).sort(
       gap: 0.5em;
     }
     ul li {
-      width: 100%;
       text-align: center;
     }
     ul li:first-child {
