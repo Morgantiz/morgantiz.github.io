@@ -3,10 +3,21 @@ import Page from "../layouts/Page.astro";
 import { getCollection } from "astro:content";
 import FormattedDate from "../components/utils/FormattedDate.astro";
 import { render } from "astro:content";
+import Card from "../components/utils/Card.astro";
 
-// Orders jobs and renders the content
 const jobs = await Promise.all(
   (await getCollection("jobs"))
+    .sort((a, b) => b.data.start.valueOf() - a.data.start.valueOf())
+    .map(async (post) => {
+      const rendered = await render(post);
+      return {
+        ...post,
+        Content: rendered.Content,
+      };
+    }),
+);
+const education = await Promise.all(
+  (await getCollection("education"))
     .sort((a, b) => b.data.start.valueOf() - a.data.start.valueOf())
     .map(async (post) => {
       const rendered = await render(post);
@@ -19,19 +30,60 @@ const jobs = await Promise.all(
 ---
 
 <!doctype html>
-<Page title="Curriculum" description="Lorem ipsum dolor sit amet">
+<Page title="" description="Lorem ipsum dolor sit amet">
   <section>
+    <h2>Experiences</h2>
     <ul>
       {
-        jobs.map((job) => (
+        jobs.map((el) => (
           <li>
-            <article>
-              <h2>{job.data.title}</h2>
-              <p class="start-date">
-                <FormattedDate date={job.data.start} />
-              </p>
-              <job.Content />
-            </article>
+            <Card>
+              <div slot="header">
+                <h4>{el.data.title}</h4>
+                <h5>
+                  (
+                  <FormattedDate date={el.data.start} /> {" - "}
+                  {el.data.end ? (
+                    <FormattedDate date={el.data.end} />
+                  ) : (
+                    "Present"
+                  )}
+                  )
+                </h5>
+                <h5>{el.data.istitution} </h5>
+              </div>
+              <el.Content />
+              <h5 style="right:0">{el.data.place}</h5>
+            </Card>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+  <section>
+    <h2>Education</h2>
+    <ul>
+      {
+        education.map((el) => (
+          <li>
+            <Card>
+              <div slot="header">
+                <h4>{el.data.title}</h4>
+                <h5>
+                  (
+                  <FormattedDate date={el.data.start} /> {" - "}
+                  {el.data.end ? (
+                    <FormattedDate date={el.data.end} />
+                  ) : (
+                    "Present"
+                  )}
+                  )
+                </h5>
+                <h5>{el.data.istitution} </h5>
+              </div>
+              <el.Content />
+              <h5 style="right:0">{el.data.place}</h5>
+            </Card>
           </li>
         ))
       }
@@ -69,6 +121,11 @@ const jobs = await Promise.all(
     }
     .download-link:hover {
       background-color: #000000;
+    }
+
+    ul li {
+      font-size: 20px;
+      padding-bottom: 1em;
     }
   </style>
 </Page>
