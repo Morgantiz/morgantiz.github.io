@@ -57,6 +57,7 @@ const { pages } = Astro.props;
     if (!document.getElementById("dropdown")?.contains(e.target)) {
       menu?.classList.remove("show");
       button.setAttribute("aria-expanded", "false");
+      button?.classList.toggle("show");
     }
   });
 </script>
@@ -72,7 +73,9 @@ const { pages } = Astro.props;
     padding: 0.5rem 0.75rem;
     font-size: 1em;
     color: var(--accent); /* text-gray-900 */
-    border: 0;
+    border-width: 0px;
+    border-radius: 0.5rem;
+    box-shadow: 0;
     cursor: pointer;
   }
   .dropdown-button a {
@@ -97,17 +100,19 @@ const { pages } = Astro.props;
     margin-top: 0.5rem;
     width: 8rem;
     border-radius: 0.375rem;
-    background-color: var(--bg-primary);
+    background-color: var(--bg-secondary);
     box-shadow:
       0 10px 15px -3px rgba(0, 0, 0, 0.1),
       0 4px 6px -4px rgba(0, 0, 0, 0.05);
-    border: 0px solid rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-color: var(--accent);
     outline: none;
   }
 
   /* Animation */
   .dropdown-button.show {
-    background-color: var(--bg-primary);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-color: var(--accent);
   }
   .dropdown-menu.show {
     display: block;
