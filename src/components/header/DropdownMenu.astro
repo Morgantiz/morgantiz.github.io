@@ -57,7 +57,7 @@ const { pages } = Astro.props;
     if (!document.getElementById("dropdown")?.contains(e.target)) {
       menu?.classList.remove("show");
       button.setAttribute("aria-expanded", "false");
-      button?.classList.toggle("show");
+      button?.classList.remove("show");
     }
   });
 </script>
