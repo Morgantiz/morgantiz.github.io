@@ -1,0 +1,24 @@
+<svg width="100%" height="100%" viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#e0e0e0"/>
+      <stop offset="100%" stop-color="#c0c0c0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background with rounded corners -->
+  <rect x="0" y="0" width="640" height="360" rx="20" ry="20" fill="url(#bg)"/>
+
+  <!-- Camera icon (centered) -->
+  <g transform="translate(270, 100)">
+    <rect x="0" y="0" width="100" height="80" rx="8" ry="8" fill="#999"/>
+    <circle cx="50" cy="40" r="18" fill="#ccc"/>
+    <circle cx="50" cy="40" r="8" fill="#999"/>
+    <rect x="40" y="-10" width="20" height="10" rx="2" ry="2" fill="#999"/>
+  </g>
+
+  <!-- Text centered below icon -->
+  <text x="320" y="250" font-size="22" text-anchor="middle" fill="#666" dominant-baseline="middle" font-family="sans-serif">
+    Image Placeholder
+  </text>
+</svg>
