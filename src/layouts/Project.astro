@@ -12,7 +12,7 @@ const { title, pubDate, updatedDate, heroImage } = Astro.props;
 <Page title={title}>
   <article>
     <div class="hero-image">
-      {heroImage && <img width={560} height={255} src={heroImage} alt="" />}
+      <img src={heroImage} />
     </div>
     <div class="prose">
       <div class="title">
@@ -27,7 +27,19 @@ const { title, pubDate, updatedDate, heroImage } = Astro.props;
           }
         </h5>
       </div>
-      <slot />
+      <div class="content">
+        <slot />
+      </div>
     </div>
   </article>
 </Page>
+
+<style>
+  .hero-image img {
+    max-height: 20rem;
+  }
+
+  .content {
+    padding-bottom: 1rem;
+  }
+</style>

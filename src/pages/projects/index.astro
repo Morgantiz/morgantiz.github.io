@@ -16,8 +16,8 @@ const posts = (await getCollection("projects")).sort(
         posts.map((post) => (
           <li>
             <a href={`/projects/${post.data.title}/`}>
-              <img width={720} height={360} src={post.data.heroImage} alt="" />
-              <h1 class="title">{post.data.title}</h1>
+              <img src={post.data.heroImage} />
+              <h3 class="title">{post.data.title}</h3>
               <h5>
                 <FormattedDate date={post.data.pubDate} />
               </h5>
@@ -33,7 +33,6 @@ const posts = (await getCollection("projects")).sort(
   h1,
   h5 {
     color: var(--accent);
-    font-size: 20px;
     font-weight: bolder;
     text-decoration: none;
   }
@@ -46,6 +45,8 @@ const posts = (await getCollection("projects")).sort(
     justify-content: center;
   }
   ul li {
+    justify-content: center;
+    text-align: center;
     width: calc(50% - 1rem);
   }
   ul li * {
@@ -55,17 +56,13 @@ const posts = (await getCollection("projects")).sort(
   ul li:first-child {
     width: 80%;
     margin-bottom: 1rem;
-    text-align: center;
   }
-  ul li:first-child img {
-    width: 100%;
-  }
-  ul li:first-child .title {
-    font-size: 1.5rem;
-  }
+
   ul li img {
     margin-bottom: 0.5rem;
     border-radius: 12px;
+    max-height: 10rem;
+    width: auto;
   }
   ul li a {
     display: block;
@@ -82,15 +79,6 @@ const posts = (await getCollection("projects")).sort(
   @media (max-width: 720px) {
     ul {
       gap: 0.5em;
-    }
-    ul li {
-      text-align: center;
-    }
-    ul li:first-child {
-      margin-bottom: 0;
-    }
-    ul li:first-child .title {
-      font-size: 1.563em;
     }
   }
 </style>
