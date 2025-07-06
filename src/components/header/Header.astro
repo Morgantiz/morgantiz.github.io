@@ -13,7 +13,9 @@ const pages = [
 ---
 
 <header class={className}>
-  <Link href="/">{SITE_TITLE}</Link>
+  <h3>
+    <Link href="/">{SITE_TITLE}</Link>
+  </h3>
   <div class="internal-links-desktop">
     {pages.map((page) => <Link href={page.href}>{page.name}</Link>)}
   </div>
@@ -34,7 +36,6 @@ const pages = [
 
   a {
     color: var(--accent);
-    font-size: 1em;
     font-weight: bolder;
   }
   a:hover {

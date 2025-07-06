@@ -1,0 +1,35 @@
+---
+import Card from "./Card.astro";
+import FormattedDate from "./FormattedDate.astro"; // assuming it's an Astro component too
+
+const { info } = Astro.props;
+---
+
+<Card>
+  <div slot="header">
+    <h4>{info.data.title}</h4>
+    <h5>
+      (
+      <FormattedDate date={info.data.start} />
+      {" - "}
+      {info.data.end ? <FormattedDate date={info.data.end} /> : "Present"}
+      )
+    </h5>
+    <h5>{info.data.istitution}</h5>
+  </div>
+  <div class="content">
+    <info.Content />
+  </div>
+  <h5 class="place">{info.data.place}</h5>
+</Card>
+
+<style>
+  .place {
+    float: right;
+  }
+  .content {
+    min-height: 1rem;
+    text-indent: 0;
+    margin: 0;
+  }
+</style>
