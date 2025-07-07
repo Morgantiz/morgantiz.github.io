@@ -9,28 +9,26 @@ const { pages } = Astro.props;
 ---
 
 <div class="dropdown-container" id="dropdown">
-  <div>
-    <button
-      type="button"
-      class="dropdown-button"
-      id="menu-button"
-      aria-expanded="true"
-      aria-haspopup="true"
+  <button
+    type="button"
+    class="dropdown-button"
+    id="menu-button"
+    aria-expanded="true"
+    aria-haspopup="true"
+  >
+    <svg
+      class="menu-icon"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
     >
-      <h3>Menu</h3>
-      <svg
-        class="dropdown-icon"
-        viewBox="0 0 20 20"
-        fill="currentColor"
-        aria-hidden="true"
-      >
-        <path
-          fill-rule="evenodd"
-          d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z"
-          clip-rule="evenodd"></path>
-      </svg>
-    </button>
-  </div>
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M4 6h16M4 12h16M4 18h16"></path>
+    </svg>
+  </button>
 
   <div class="dropdown-menu" id="dropdown-menu">
     <div class="dropdown-items">
@@ -67,7 +65,7 @@ const { pages } = Astro.props;
   .dropdown-button {
     display: inline-flex;
     justify-content: center;
-    gap: 0.375rem;
+    text-align: center;
     border-radius: 0.375rem;
     background-color: var(--bg-secondary);
     padding: 0.5rem 0.75rem;
@@ -77,15 +75,11 @@ const { pages } = Astro.props;
     box-shadow: 0;
     cursor: pointer;
   }
-  .dropdown-button a {
+
+  .menu-icon {
+    width: 1.5rem;
+    height: 1.5rem;
     color: var(--accent);
-    font-weight: bolder;
-  }
-  .dropdown-icon {
-    margin-right: -0.25rem;
-    width: 1.25rem;
-    height: 1.25rem;
-    color: var(--accent); /* text-gray-400 */
   }
 
   /* Menu  */
@@ -97,7 +91,7 @@ const { pages } = Astro.props;
     right: 0;
     z-index: 10;
     margin-top: 0.5rem;
-    width: 8rem;
+    width: 9rem;
     border-radius: 0.375rem;
     background-color: var(--bg-secondary);
     box-shadow:
