@@ -93,13 +93,11 @@ const { words, speed = 100 } = Astro.props;
 
 <style>
   #typewriter-text {
-    font-size: 3rem;
     font-weight: 700;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    min-height: 4rem;
     display: inline-block;
   }
 
@@ -117,20 +115,6 @@ const { words, speed = 100 } = Astro.props;
     51%,
     100% {
       opacity: 0;
-    }
-  }
-
-  @media (max-width: 768px) {
-    #typewriter-text {
-      font-size: 2rem;
-      min-height: 3rem;
-    }
-  }
-
-  @media (max-width: 480px) {
-    #typewriter-text {
-      font-size: 1.5rem;
-      min-height: 2.5rem;
     }
   }
 </style>

@@ -10,9 +10,15 @@ const musicIcons = ["🎪", "🎭", "🎬", "🎮", "🎸", "🎺", "🎻", "�
 
 <!doctype html>
 <Layout>
-  <div class="text">
-    <TypewriterText words={HOME_WORDS} />
-  </div>
+  <h2 class="title">
+    <div>
+      Hi, I'm <span>Carlo Morganti</span>
+    </div>
+    <div>
+      a <TypewriterText words={HOME_WORDS} />
+    </div>
+  </h2>
+
   <!-- <div class="scrolling-icons">
     <ScrollingIcons
       icons={musicIcons}
@@ -24,12 +30,16 @@ const musicIcons = ["🎪", "🎭", "🎬", "🎮", "🎸", "🎺", "🎻", "�
 </Layout>
 
 <style>
-  .text {
+  .title {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
+    margin: auto;
+    min-width: 18rem;
   }
-  .scrolling-icons {
+  span {
+    color: var(--accent-hover);
+  }
+  /* .scrolling-icons {
     display: flex;
-  }
+  } */
 </style>
